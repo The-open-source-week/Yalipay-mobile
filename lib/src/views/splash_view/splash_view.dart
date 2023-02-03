@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
+import 'package:yalipay/src/views/components/intro_text_compoent.dart';
+import 'package:yalipay/src/views/welcome_view/welcome_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -12,6 +14,20 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+
+  @override
+  void initState() {
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (ctx) => const WelcomeView()), 
+          (route) => false
+        );
+      }
+    );
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,28 +38,9 @@ class _SplashViewState extends State<SplashView> {
 
           const Spacer(),
 
-          const Center(
-            child: Text(
-              "YaliPay",     
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 48,
-                color: Colors.white
-              ),
-            ),
-          ),
+          const IntroTextComponent(),
 
-          const Center(
-            child: Text(
-              "Confiança não tem preço\nseu dinheiro está seguro aqui",   
-              textAlign: TextAlign.center,  
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 12,
-                color: Colors.white
-              ),
-            ),
-          ),
+          const SizedBox(height: 60,),
 
           Image.asset(
             handImage,
