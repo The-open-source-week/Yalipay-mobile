@@ -1,6 +1,6 @@
-// IMAGES
 import 'package:flutter/material.dart';
 
+// IMAGES
 const handImage         = "assets/imgs/hand.png";
 const avatarImage       = "assets/imgs/avatar.png";
 const cloudCheckImage   = "assets/imgs/cloud-check.png";

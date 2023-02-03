@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
+import 'package:yalipay/src/views/splash_view/splash_view.dart';
 
 class AppView extends StatelessWidget {
   const AppView({super.key});
@@ -16,7 +17,7 @@ class AppView extends StatelessWidget {
           bodyText2: TextStyle(fontFamily: fontPoppins),
         )
       ),
-      home: const Scaffold(),
+      home: const SplashView(),
     );
   }
 }
