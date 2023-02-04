@@ -80,6 +80,9 @@ flutter:
     - family: poppins
       fonts:
         - asset: assets/fonts/poppins.ttf
+    - family: poppins-medium
+      fonts:
+        - asset: assets/fonts/Poppins-Medium.ttf
     - family: inter
       fonts:
         - asset: assets/fonts/inter.ttf

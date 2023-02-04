@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
+import 'package:yalipay/src/utils/navigator_util.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
 import 'package:yalipay/src/views/components/intro_text_compoent.dart';
 import 'package:yalipay/src/views/welcome_view/welcome_view.dart';
@@ -18,13 +19,8 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (ctx) => const WelcomeView()), 
-          (route) => false
-        );
-      }
+      const Duration(seconds: 5),
+      () => GoTo.pageWithoutReturn(context, page: const WelcomeView())
     );
     super.initState();
   }

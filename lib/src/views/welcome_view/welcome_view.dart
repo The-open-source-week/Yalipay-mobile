@@ -1,8 +1,10 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:yalipay/src/utils/navigator_util.dart';
 import 'package:yalipay/src/views/components/custom_button_component.dart';
 import 'package:yalipay/src/views/components/intro_text_compoent.dart';
+import 'package:yalipay/src/views/login_view/login_view.dart';
 
 class WelcomeView extends StatefulWidget {
   const WelcomeView({super.key});
@@ -18,24 +20,27 @@ class _WelcomeViewState extends State<WelcomeView> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
+        children: [
 
-           Spacer(),
+           const Spacer(),
 
-          IntroTextComponent(),
+          const IntroTextComponent(),
 
-          SizedBox(height: 142,),
-
-          CustomButtonCompoent(title: "Já Tenho Conta",),
-
-          SizedBox(height: 29,),
+          const SizedBox(height: 142,),
 
           CustomButtonCompoent(
+            title: "Já Tenho Conta",
+            onTap: () => GoTo.page(context, page: const LoginView()),
+          ),
+
+          const SizedBox(height: 29,),
+
+          const CustomButtonCompoent(
             title: "Me Cadastrar",
             showBorderOutline: true,
           ),
 
-          SizedBox(height: 142,)
+          const SizedBox(height: 142,)
 
           
         ],
