@@ -8,6 +8,7 @@ import 'package:yalipay/src/views/components/custom_textfield_component.dart';
 import 'package:yalipay/src/views/components/intro_text_compoent.dart';
 import 'package:yalipay/src/views/components/text_with_link_component.dart';
 import 'package:yalipay/src/views/create_account_view/create_account_view.dart';
+import 'package:yalipay/src/views/home_view/home_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -64,7 +65,10 @@ class _LoginViewState extends State<LoginView> {
  
                 const SizedBox(height: 85,),   
 
-                const CustomButtonCompoent(title: "Entrar"),
+                CustomButtonCompoent(
+                  title: "Entrar",
+                  onTap: () => GoTo.page(context, page: const HomeView()),
+                ),
 
                 const SizedBox(height: 17,),
 

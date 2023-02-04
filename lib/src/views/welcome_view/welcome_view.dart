@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/navigator_util.dart';
 import 'package:yalipay/src/views/components/custom_button_component.dart';
 import 'package:yalipay/src/views/components/intro_text_compoent.dart';
+import 'package:yalipay/src/views/create_account_view/create_account_view.dart';
 import 'package:yalipay/src/views/login_view/login_view.dart';
 
 class WelcomeView extends StatefulWidget {
@@ -35,9 +36,10 @@ class _WelcomeViewState extends State<WelcomeView> {
 
           const SizedBox(height: 29,),
 
-          const CustomButtonCompoent(
+           CustomButtonCompoent(
             title: "Me Cadastrar",
             showBorderOutline: true,
+            onTap: () => GoTo.page(context, page: const CreateAccountView()),
           ),
 
           const SizedBox(height: 142,)

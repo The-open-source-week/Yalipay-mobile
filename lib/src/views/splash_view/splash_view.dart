@@ -42,6 +42,7 @@ class _SplashViewState extends State<SplashView> {
             handImage,
             height: context.sizeDevice.height / 2,
             width: 236,
+            fit: BoxFit.fill,
           )
         ],
       ),

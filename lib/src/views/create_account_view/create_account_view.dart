@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/navigator_util.dart';
+import 'package:yalipay/src/utils/size_device_util.dart';
 import 'package:yalipay/src/views/components/custom_button_component.dart';
 import 'package:yalipay/src/views/components/custom_textfield_component.dart';
 import 'package:yalipay/src/views/components/intro_text_compoent.dart';
@@ -19,60 +20,70 @@ class _CreateAccountViewState extends State<CreateAccountView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20
+      body: SizedBox(
+        height: context.sizeDevice.height,
+        width: context.sizeDevice.width,
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+
+                const SizedBox(height: 40,),
+
+                const IntroTextComponent(vault: true,),
+                const SizedBox(height: 51,),
+
+                const CustomTextfieldComponent(
+                  label: "Username", 
+                  hint: "Insira seu username",
+                  textInputType: TextInputType.text,
+                ),
+                const SizedBox(height: 30,),
+
+                const CustomTextfieldComponent(
+                  label: "Número Telefone", 
+                  hint: "Insira seu telefone",
+                  textInputType: TextInputType.phone,
+                ),
+                const SizedBox(height: 30,),
+
+
+                const CustomTextfieldComponent(
+                  label: "E-mail", 
+                  hint: "Insira seu e-mail",
+                  textInputType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 30,),
+
+                const CustomTextfieldComponent(
+                  label: "Senha", 
+                  hint: "Insira sua senha",
+                  isPwd: true,
+                  textInputType: TextInputType.text,
+                ),
+                
+                const SizedBox(height: 64,),   
+
+                const CustomButtonCompoent(title: "Cadastrar"),
+                const SizedBox(height: 17,),
+
+                TextWithLinkComponent(
+                  text: "Já tenho conta. ", 
+                  textLink: "Entrar", 
+                  alignment: MainAxisAlignment.center,
+                  onTapLink: () => GoTo.pageWithoutReturn(context, page: const LoginView()),
+                ),
+                const SizedBox(height: 54,),
+                
+              ],
+            ),
+          ),
         ),
-        children: [
-
-          const SizedBox(height: 40,),
-
-          const IntroTextComponent(vault: true,),
-          const SizedBox(height: 51,),
-
-          const CustomTextfieldComponent(
-            label: "Username", 
-            hint: "Insira seu username",
-            textInputType: TextInputType.text,
-          ),
-          const SizedBox(height: 30,),
-
-          const CustomTextfieldComponent(
-            label: "Número Telefone", 
-            hint: "Insira seu telefone",
-            textInputType: TextInputType.phone,
-          ),
-          const SizedBox(height: 30,),
-
-
-          const CustomTextfieldComponent(
-            label: "E-mail", 
-            hint: "Insira seu e-mail",
-            textInputType: TextInputType.emailAddress,
-          ),
-          const SizedBox(height: 30,),
-
-          const CustomTextfieldComponent(
-            label: "Senha", 
-            hint: "Insira sua senha",
-            isPwd: true,
-            textInputType: TextInputType.text,
-          ),
-          
-          const SizedBox(height: 64,),   
-
-          const CustomButtonCompoent(title: "Cadastrar"),
-          const SizedBox(height: 17,),
-
-          TextWithLinkComponent(
-            text: "Já tenho conta. ", 
-            textLink: "Entrar", 
-            alignment: MainAxisAlignment.center,
-            onTapLink: () => GoTo.pageWithoutReturn(context, page: const LoginView()),
-          ),
-          const SizedBox(height: 54,),
-          
-        ],
       ),
     );
   }
