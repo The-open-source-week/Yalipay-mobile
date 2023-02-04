@@ -14,9 +14,12 @@ const transferWhiteIcon = "assets/imgs/icons/transfer-white.png";
 const visaIcon          = "assets/imgs/icons/visa.png";
 
 // FONTS
-const fontPoppins       = "poppins";
-const fontPoppinsMedium = "poppins-medium";
-const fontInter         = "inter";
+const fontPoppins            = "poppins";
+const fontPoppinsMedium      = "poppins-medium";
+const fontPoppinsLight       = "poppins-light";
+const fontInter              = "inter";
+const fontInterLight         = "inter-light";
+const fontInterBold          = "inter-bold";
 
 // COLORS
 const colorYellow  = Color(0xffFCEE21);

@@ -37,9 +37,9 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
                 "Saldo",
                 style: TextStyle(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w100,
                   fontSize: 25,
-                  fontFamily: fontInter
+                  fontFamily: fontInterBold
                 ),
               ),
 
@@ -80,9 +80,9 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
                 "AOA ",
                 style: TextStyle(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w100,
                   fontSize: 23,
-                  fontFamily: fontInter
+                  fontFamily: fontInterBold
                 ),
               ),
 
@@ -91,9 +91,8 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
                 "2,534,768.00",
                 style: TextStyle(
                   color: Colors.white,
-                  fontWeight: FontWeight.w100,
                   fontSize: 23,
-                  fontFamily: fontInter
+                  fontFamily: fontInterLight
                 ),
               )
             ],
