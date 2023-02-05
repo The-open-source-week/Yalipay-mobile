@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
+import 'package:yalipay/src/utils/navigator_util.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
 import 'package:yalipay/src/views/components/custom_app_component.dart';
 import 'package:yalipay/src/views/components/custom_button_component.dart';
 import 'package:yalipay/src/views/components/text_with_link_component.dart';
+import 'package:yalipay/src/views/confirm_transfer_view/confirm_transfer_view.dart';
 import 'package:yalipay/src/views/verification_pin_view/components/pin_component.dart';
 
 class VerificationPinView extends StatefulWidget {
@@ -97,7 +99,10 @@ class _VerificationPinViewState extends State<VerificationPinView> {
 
                     SizedBox(height: context.sizeDevice.height / 3.5,),
 
-                    const CustomButtonCompoent(title: "Transferir"),
+                    CustomButtonCompoent(
+                      title: "Transferir",
+                      onTap: () => GoTo.page(context, page: const ConfirmTransferView()),
+                    ),
 
 
                     const SizedBox(height: 17,),
