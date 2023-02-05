@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
+import 'package:yalipay/src/utils/navigator_util.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
+import 'package:yalipay/src/views/add_credit_card_view/add_credit_card_view.dart';
 import 'package:yalipay/src/views/components/credit_card_component.dart';
 import 'package:yalipay/src/views/components/custom_app_component.dart';
 
@@ -66,10 +68,13 @@ class _CreditCardViewState extends State<CreditCardView> {
                           ),
                         ),
 
-                        Image.asset(
-                          addWhiteIcon,
-                          width: 20,
-                          height: 23.53,
+                        GestureDetector(
+                          onTap: () => GoTo.page(context, page: const AddCreditCardView()),
+                          child: Image.asset(
+                            addWhiteIcon,
+                            width: 20,
+                            height: 23.53,
+                          ),
                         )
                       ],
                     ),

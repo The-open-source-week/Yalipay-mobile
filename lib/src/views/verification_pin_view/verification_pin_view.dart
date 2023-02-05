@@ -107,14 +107,17 @@ class _VerificationPinViewState extends State<VerificationPinView> {
 
                     const SizedBox(height: 17,),
 
-                    const Center(
-                      child: Text(
-                        "Cancelar Operação",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                          fontFamily: fontPoppinsMedium
+                    GestureDetector(
+                      onTap: () => Navigator.pop(context),
+                      child: const Center(
+                        child: Text(
+                          "Cancelar Operação",
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            fontFamily: fontPoppinsMedium
+                          ),
                         ),
                       ),
                     ),

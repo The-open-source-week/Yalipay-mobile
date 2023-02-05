@@ -7,14 +7,14 @@ import 'package:yalipay/src/views/components/custom_button_component.dart';
 import 'package:yalipay/src/views/components/custom_textfield_component.dart';
 import 'package:yalipay/src/views/verification_pin_view/verification_pin_view.dart';
 
-class TransferView extends StatefulWidget {
-  const TransferView({super.key});
+class AddCreditCardView extends StatefulWidget {
+  const AddCreditCardView({super.key});
 
   @override
-  State<TransferView> createState() => _TransferViewState();
+  State<AddCreditCardView> createState() => _AddCreditCardViewState();
 }
 
-class _TransferViewState extends State<TransferView> {
+class _AddCreditCardViewState extends State<AddCreditCardView> {
 
   final scrollController = ScrollController();
   bool showShadowAppBar = false;
@@ -56,7 +56,7 @@ class _TransferViewState extends State<TransferView> {
                     const SizedBox(height: 20,),
 
                     const Text(
-                      "Transferir",
+                      "Add Cartão",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
@@ -68,23 +68,16 @@ class _TransferViewState extends State<TransferView> {
                     const SizedBox(height: 20,),
 
                     const CustomTextfieldComponent(
-                      label: "IBAN", 
-                      hint: "Insira o iban",
+                      label: "Número do Cartão", 
+                      hint: "Insira o Número do Cartão",
                       textInputType: TextInputType.number,
                     ),
 
-                    const SizedBox(height: 30,),
-
-                    const CustomTextfieldComponent(
-                      label: "Montante", 
-                      hint: "Insira o montante",
-                      textInputType: TextInputType.number,
-                    ),
-
-                    SizedBox(height: context.sizeDevice.height / 3.2,),
+                    
+                    SizedBox(height: context.sizeDevice.height / 2.2,),
 
                     CustomButtonCompoent(
-                      title: "Transferir",
+                      title: "Confirmar",
                       onTap: () => GoTo.page(context, page:  const VerificationPinView()),
                     ),
 
