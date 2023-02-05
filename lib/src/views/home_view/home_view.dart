@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
 import 'package:yalipay/src/views/components/credit_card_component.dart';
+import 'package:yalipay/src/views/home_view/component/item_menu_component.dart';
 import 'package:yalipay/src/views/home_view/component/movement_component.dart';
 
 class HomeView extends StatefulWidget {
@@ -117,6 +118,42 @@ class _HomeViewState extends State<HomeView> {
               )
             ],
           ),
+        ),
+      ),
+
+
+      bottomNavigationBar: Container(
+        height: 61.05,
+        width: context.sizeDevice.width,
+        color: const Color(0xff202020),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 68,
+          vertical: 20
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+
+            ItemMenuComponent(
+              iconDeselected: homeWhiteIcon, 
+              iconSelected: homeYellowIcon, 
+              isSelected: true
+            ),
+
+            ItemMenuComponent(
+              iconDeselected: transferWhiteIcon, 
+              iconSelected: transferWhiteIcon, 
+              isSelected: false
+            ),
+
+            ItemMenuComponent(
+              iconDeselected: folderWhiteIcon, 
+              iconSelected: folderWhiteIcon, 
+              isSelected: false
+            ),
+
+            
+          ],
         ),
       ),
     );
