@@ -7,7 +7,14 @@ class CreditCardComponent extends StatefulWidget {
   final EdgeInsets? margin;
   final Color color;
   final bool showOptions;
-  const CreditCardComponent({super.key, this.margin, required this.color, this.showOptions = false});
+  final void Function()? onTapOptionBtn;
+  const CreditCardComponent({
+    super.key, 
+    this.margin, 
+    required this.color, 
+    this.showOptions = false, 
+    this.onTapOptionBtn
+  });
 
   @override
   State<CreditCardComponent> createState() => _CreditCardComponentState();
@@ -48,10 +55,13 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
               ),
 
               widget.showOptions
-              ? Image.asset(
-                optionWhiteIcon,
-                height: 20,
-                width: 20,
+              ? GestureDetector(
+                onTap: widget.onTapOptionBtn,
+                child: Image.asset(
+                  optionWhiteIcon,
+                  height: 20,
+                  width: 20,
+                ),
               )
               : GestureDetector(
                 onTap: () => setState(() => enable = !enable),
