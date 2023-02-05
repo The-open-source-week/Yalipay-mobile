@@ -58,7 +58,9 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   children: [
 
-                    const CreditCardComponent(),
+                    const CreditCardComponent(
+                      color: Color(0xff4F339A),
+                    ),
 
                     const SizedBox(height: 41,),
 

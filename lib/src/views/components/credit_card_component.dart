@@ -4,7 +4,10 @@ import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
 
 class CreditCardComponent extends StatefulWidget {
-  const CreditCardComponent({super.key});
+  final EdgeInsets? margin;
+  final Color color;
+  final bool showOptions;
+  const CreditCardComponent({super.key, this.margin, required this.color, this.showOptions = false});
 
   @override
   State<CreditCardComponent> createState() => _CreditCardComponentState();
@@ -19,12 +22,13 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
     return Container(
       height: 190,
       width: context.sizeDevice.width,
+      margin: widget.margin,
       padding: const EdgeInsets.symmetric(
         vertical: 20,
         horizontal: 13
       ),
       decoration: BoxDecoration(
-        color: const Color(0xff4F339A),
+        color: widget.color,
         borderRadius: BorderRadius.circular(10)
       ),
       child: Column(
@@ -43,7 +47,13 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
                 ),
               ),
 
-              GestureDetector(
+              widget.showOptions
+              ? Image.asset(
+                optionWhiteIcon,
+                height: 20,
+                width: 20,
+              )
+              : GestureDetector(
                 onTap: () => setState(() => enable = !enable),
                 child: Container(
                   width: 30,

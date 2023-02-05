@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
-//import 'package:yalipay/src/views/splash_view/splash_view.dart';
-import 'package:yalipay/src/views/verification_pin_view/verification_pin_view.dart';
+import 'package:yalipay/src/views/credit_card_view/credit_card_view.dart';
 
 class AppView extends StatelessWidget {
   const AppView({super.key});
@@ -18,7 +17,7 @@ class AppView extends StatelessWidget {
           bodyText2: TextStyle(fontFamily: fontPoppins),
         )
       ),
-      home: const VerificationPinView(),
+      home: const CreditCardView(),
     );
   }
 }
