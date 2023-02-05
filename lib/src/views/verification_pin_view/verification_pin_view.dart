@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
-import 'package:yalipay/src/utils/navigator_util.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
 import 'package:yalipay/src/views/components/custom_app_component.dart';
 import 'package:yalipay/src/views/components/custom_button_component.dart';
-import 'package:yalipay/src/views/components/custom_textfield_component.dart';
-import 'package:yalipay/src/views/verification_pin_view/verification_pin_view.dart';
+import 'package:yalipay/src/views/components/text_with_link_component.dart';
+import 'package:yalipay/src/views/verification_pin_view/components/pin_component.dart';
 
-class TransferView extends StatefulWidget {
-  const TransferView({super.key});
+class VerificationPinView extends StatefulWidget {
+  const VerificationPinView({super.key});
 
   @override
-  State<TransferView> createState() => _TransferViewState();
+  State<VerificationPinView> createState() => _VerificationPinViewState();
 }
 
-class _TransferViewState extends State<TransferView> {
+class _VerificationPinViewState extends State<VerificationPinView> {
 
   final scrollController = ScrollController();
   bool showShadowAppBar = false;
@@ -56,7 +55,7 @@ class _TransferViewState extends State<TransferView> {
                     const SizedBox(height: 20,),
 
                     const Text(
-                      "Transferir",
+                      "Validar Operação",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
@@ -65,28 +64,40 @@ class _TransferViewState extends State<TransferView> {
                       ),
                     ),
 
-                    const SizedBox(height: 20,),
-
-                    const CustomTextfieldComponent(
-                      label: "IBAN", 
-                      hint: "Insira o iban",
-                      textInputType: TextInputType.number,
-                    ),
-
                     const SizedBox(height: 30,),
 
-                    const CustomTextfieldComponent(
-                      label: "Montante", 
-                      hint: "Insira o montante",
-                      textInputType: TextInputType.number,
+                    const Text(
+                      "Para validar a transferência, no valor de AOA 79,45, insira o código de confirmação que recebeu por SMS.",
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
                     ),
 
-                    SizedBox(height: context.sizeDevice.height / 3.2,),
+                    const SizedBox(height: 40,),
 
-                    CustomButtonCompoent(
-                      title: "Transferir",
-                      onTap: () => GoTo.page(context, page:  const VerificationPinView()),
+                    PinComponent(
+                      onFinished: (result) {
+                        debugPrint(result);
+                      },
                     ),
+
+                    const SizedBox(height: 37,),
+
+                    const TextWithLinkComponent(
+                      text: "Não recebi o código de confirmação, ", 
+                      textLink: "Reenviar", 
+                      alignment: MainAxisAlignment.start
+                    ),
+
+
+
+                    
+
+                    SizedBox(height: context.sizeDevice.height / 3.5,),
+
+                    const CustomButtonCompoent(title: "Transferir"),
 
 
                     const SizedBox(height: 17,),
