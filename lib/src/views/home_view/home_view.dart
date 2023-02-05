@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/utils/navigator_util.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
-import 'package:yalipay/src/views/components/credit_card_component.dart';
-import 'package:yalipay/src/views/components/custom_app_component.dart';
+import 'package:yalipay/src/views/credit_card_view/credit_card_view.dart';
+import 'package:yalipay/src/views/historic_view/historic_view.dart';
 import 'package:yalipay/src/views/home_view/component/item_menu_component.dart';
-import 'package:yalipay/src/views/home_view/component/movement_component.dart';
 import 'package:yalipay/src/views/transfer_view/transfer_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -20,6 +19,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
 
   final scrollController = ScrollController();
+  final pageController = PageController();
   bool showShadowAppBar = false;
 
   bool isPageHome = true;
@@ -29,6 +29,12 @@ class _HomeViewState extends State<HomeView> {
 
     scrollController.addListener(() {
       setState(() => showShadowAppBar = scrollController.offset > 4);
+    });
+
+    pageController.addListener(() {
+      setState(() {
+        isPageHome = pageController.page!.toDouble() == 0;
+      });
     });
 
     super.initState();
@@ -41,66 +47,12 @@ class _HomeViewState extends State<HomeView> {
         child: SizedBox(
           height: context.sizeDevice.height,
           width: context.sizeDevice.width,
-          child: Column(
-            children: [
-
-              const SizedBox(height: 43,),
-              
-              CustomAppBarComponent(
-                showShadowAppBar: showShadowAppBar,
-              ),
-
-              Expanded(
-                child: ListView(
-                  controller: scrollController,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 23
-                  ),
-                  children: [
-
-                    const CreditCardComponent(
-                      color: Color(0xff4F339A),
-                    ),
-
-                    const SizedBox(height: 41,),
-
-                    Row(
-                      children: const [
-
-                        Text(
-                          "Movimentos ",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 15,
-                            fontFamily: fontPoppinsMedium,
-                            color: Colors.white
-                          ),
-                        ),
-
-                        Text(
-                          "Recentes",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w100,
-                            fontSize: 15,
-                            color: Colors.white,
-                            fontFamily: fontPoppinsLight
-                          ),
-                        )
-                      ],
-                    ),
-
-                    const SizedBox(height: 25,),
-
-
-                    Column(
-                      children: List.generate(
-                        10, 
-                        (index) => MovementComponent(isDebit: index.isOdd,)
-                      ),
-                    )
-                  ],
-                ),
-              )
+          child: PageView(
+            controller: pageController,
+            physics: const NeverScrollableScrollPhysics(),
+            children: const [
+              HistoricView(),
+              CreditCardView()
             ],
           ),
         ),
@@ -123,7 +75,11 @@ class _HomeViewState extends State<HomeView> {
               iconDeselected: homeWhiteIcon, 
               iconSelected: homeYellowIcon, 
               isSelected: isPageHome,
-              onTap: () => setState(() => isPageHome = true),
+              onTap: () => pageController.animateToPage(
+                0, 
+                duration: const Duration(milliseconds: 250), 
+                curve: Curves.easeIn
+              ),
             ),
 
             ItemMenuComponent(
@@ -137,7 +93,11 @@ class _HomeViewState extends State<HomeView> {
               iconDeselected: folderWhiteIcon, 
               iconSelected: folderYellowIcon, 
               isSelected: !isPageHome,
-              onTap: () => setState(() => isPageHome = false),
+              onTap: () => pageController.animateToPage(
+                1, 
+                duration: const Duration(milliseconds: 250), 
+                curve: Curves.easeIn
+              ),
             ),
 
             

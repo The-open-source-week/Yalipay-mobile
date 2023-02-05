@@ -101,10 +101,10 @@ class _AlertOptionsState extends State<AlertOptions> {
               const SizedBox(width: 5,),
 
               Checkbox(
-                value: checkMain, 
+                value: checkCard, 
                 activeColor: colorYellow,
                 checkColor: const Color(0xff161616),
-                onChanged: (value) => setState(() => checkMain = value ?? false)
+                onChanged: (value) => setState(() => checkCard = value ?? false)
               )
             ],
           ),
