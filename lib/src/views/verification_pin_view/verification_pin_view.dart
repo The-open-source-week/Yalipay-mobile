@@ -16,19 +16,18 @@ class VerificationPinView extends StatefulWidget {
 }
 
 class _VerificationPinViewState extends State<VerificationPinView> {
-
   final scrollController = ScrollController();
   bool showShadowAppBar = false;
 
   @override
   void initState() {
-
     scrollController.addListener(() {
       setState(() => showShadowAppBar = scrollController.offset > 4);
     });
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,36 +37,29 @@ class _VerificationPinViewState extends State<VerificationPinView> {
           width: context.sizeDevice.width,
           child: Column(
             children: [
-
-              const SizedBox(height: 43,),
-
-              CustomAppBarComponent(
-                showShadowAppBar: showShadowAppBar
+              const SizedBox(
+                height: 43,
               ),
-
+              CustomAppBarComponent(showShadowAppBar: showShadowAppBar),
               Expanded(
                 child: ListView(
                   controller: scrollController,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 23
-                  ),
-
+                  padding: const EdgeInsets.symmetric(horizontal: 23),
                   children: [
-
-                    const SizedBox(height: 20,),
-
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const Text(
                       "Validar Operação",
                       style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                        fontFamily: fontPoppinsMedium
-                      ),
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                          fontFamily: YPUtils.fontPoppinsMedium),
                     ),
-
-                    const SizedBox(height: 30,),
-
+                    const SizedBox(
+                      height: 30,
+                    ),
                     const Text(
                       "Para validar a transferência, no valor de AOA 79,45, insira o código de confirmação que recebeu por SMS.",
                       style: TextStyle(
@@ -76,57 +68,48 @@ class _VerificationPinViewState extends State<VerificationPinView> {
                         color: Colors.white,
                       ),
                     ),
-
-                    const SizedBox(height: 40,),
-
+                    const SizedBox(
+                      height: 40,
+                    ),
                     PinComponent(
                       onFinished: (result) {
                         debugPrint(result);
                       },
                     ),
-
-                    const SizedBox(height: 37,),
-
-                    const TextWithLinkComponent(
-                      text: "Não recebi o código de confirmação, ", 
-                      textLink: "Reenviar", 
-                      alignment: MainAxisAlignment.start
+                    const SizedBox(
+                      height: 37,
                     ),
-
-
-
-                    
-
-                    SizedBox(height: context.sizeDevice.height / 3.5,),
-
+                    const TextWithLinkComponent(
+                        text: "Não recebi o código de confirmação, ",
+                        textLink: "Reenviar",
+                        alignment: MainAxisAlignment.start),
+                    SizedBox(
+                      height: context.sizeDevice.height / 3.5,
+                    ),
                     CustomButtonCompoent(
                       title: "Transferir",
-                      onTap: () => GoTo.page(context, page: const ConfirmTransferView()),
+                      onTap: () =>
+                          GoTo.page(context, page: const ConfirmTransferView()),
                     ),
-
-
-                    const SizedBox(height: 17,),
-
+                    const SizedBox(
+                      height: 17,
+                    ),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
                       child: const Center(
                         child: Text(
                           "Cancelar Operação",
                           style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                            fontFamily: fontPoppinsMedium
-                          ),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              fontFamily: YPUtils.fontPoppinsMedium),
                         ),
                       ),
                     ),
-                    
                   ],
                 ),
               )
-
-
             ],
           ),
         ),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 
@@ -10,7 +9,6 @@ class AlertOptions extends StatefulWidget {
 }
 
 class _AlertOptionsState extends State<AlertOptions> {
-
   bool checkMain = false;
   bool checkCard = false;
 
@@ -19,17 +17,12 @@ class _AlertOptionsState extends State<AlertOptions> {
     return Container(
       height: 260,
       width: 354,
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 13
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
       decoration: BoxDecoration(
-        color: const Color(0xff161616),
-        borderRadius: BorderRadius.circular(6)
-      ),
+          color: const Color(0xff161616),
+          borderRadius: BorderRadius.circular(6)),
       child: Column(
         children: [
-
           Align(
             alignment: Alignment.topRight,
             child: GestureDetector(
@@ -37,96 +30,78 @@ class _AlertOptionsState extends State<AlertOptions> {
               child: Container(
                 height: 20,
                 width: 20,
-
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(2)
-                ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(2)),
                 alignment: Alignment.center,
-                child: const  Text(
+                child: const Text(
                   "X",
-                  style: TextStyle(
-                    color:Color(0xff161616) 
-                  ),
+                  style: TextStyle(color: Color(0xff161616)),
                 ),
               ),
             ),
           ),
-
           const Text(
             "O que Deseja fazer?",
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 15
-            ),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
           ),
-
-          const SizedBox(height: 51,),
-
+          const SizedBox(
+            height: 51,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
                 "Definir como Principal",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 10
-                ),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10),
               ),
-
-              const SizedBox(width: 5,),
-
+              const SizedBox(
+                width: 5,
+              ),
               Checkbox(
-                value: checkMain, 
-                activeColor: colorYellow,
-                checkColor: const Color(0xff161616),
-                onChanged: (value) => setState(() => checkMain = value ?? false)
-              )
+                  value: checkMain,
+                  activeColor: YPUtils.colorYellow,
+                  checkColor: const Color(0xff161616),
+                  onChanged: (value) =>
+                      setState(() => checkMain = value ?? false))
             ],
           ),
-
-          const SizedBox(height: 10,),
-
+          const SizedBox(
+            height: 10,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
                 "Habilitar Cartão",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 10
-                ),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10),
               ),
-
-              const SizedBox(width: 5,),
-
+              const SizedBox(
+                width: 5,
+              ),
               Checkbox(
-                value: checkCard, 
-                activeColor: colorYellow,
-                checkColor: const Color(0xff161616),
-                onChanged: (value) => setState(() => checkCard = value ?? false)
-              )
+                  value: checkCard,
+                  activeColor: YPUtils.colorYellow,
+                  checkColor: const Color(0xff161616),
+                  onChanged: (value) =>
+                      setState(() => checkCard = value ?? false))
             ],
           ),
-
-          const SizedBox(height: 20,),
-
+          const SizedBox(
+            height: 20,
+          ),
           GestureDetector(
             onTap: () => Navigator.pop(context),
             child: Container(
               width: 124,
               height: 35,
               decoration: BoxDecoration(
-                color: const Color(0xffED1C24),
-                borderRadius: BorderRadius.circular(6)
-              ),
+                  color: const Color(0xffED1C24),
+                  borderRadius: BorderRadius.circular(6)),
               alignment: Alignment.center,
               child: const Text(
                 "Remover Cartão",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 10
-                ),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10),
               ),
             ),
           )

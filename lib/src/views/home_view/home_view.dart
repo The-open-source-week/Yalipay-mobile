@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/utils/navigator_util.dart';
@@ -17,7 +15,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   final scrollController = ScrollController();
   final pageController = PageController();
   bool showShadowAppBar = false;
@@ -26,7 +23,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-
     scrollController.addListener(() {
       setState(() => showShadowAppBar = scrollController.offset > 4);
     });
@@ -50,57 +46,40 @@ class _HomeViewState extends State<HomeView> {
           child: PageView(
             controller: pageController,
             physics: const NeverScrollableScrollPhysics(),
-            children: const [
-              HistoricView(),
-              CreditCardView()
-            ],
+            children: const [HistoricView(), CreditCardView()],
           ),
         ),
       ),
-
-
       bottomNavigationBar: Container(
         height: 61.05,
         width: context.sizeDevice.width,
         color: const Color(0xff202020),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 68,
-          vertical: 20
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 68, vertical: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
             ItemMenuComponent(
-              iconDeselected: homeWhiteIcon, 
-              iconSelected: homeYellowIcon, 
+              iconDeselected: YPUtils.homeWhiteIcon,
+              iconSelected: YPUtils.homeYellowIcon,
               isSelected: isPageHome,
-              onTap: () => pageController.animateToPage(
-                0, 
-                duration: const Duration(milliseconds: 250), 
-                curve: Curves.easeIn
-              ),
+              onTap: () => pageController.animateToPage(0,
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.easeIn),
             ),
-
             ItemMenuComponent(
-              iconDeselected: transferWhiteIcon, 
-              iconSelected: transferWhiteIcon, 
+              iconDeselected: YPUtils.transferWhiteIcon,
+              iconSelected: YPUtils.transferWhiteIcon,
               isSelected: false,
               onTap: () => GoTo.page(context, page: const TransferView()),
             ),
-
             ItemMenuComponent(
-              iconDeselected: folderWhiteIcon, 
-              iconSelected: folderYellowIcon, 
+              iconDeselected: YPUtils.folderWhiteIcon,
+              iconSelected: YPUtils.folderYellowIcon,
               isSelected: !isPageHome,
-              onTap: () => pageController.animateToPage(
-                1, 
-                duration: const Duration(milliseconds: 250), 
-                curve: Curves.easeIn
-              ),
+              onTap: () => pageController.animateToPage(1,
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.easeIn),
             ),
-
-            
           ],
         ),
       ),

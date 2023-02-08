@@ -7,13 +7,12 @@ class TextWithLinkComponent extends StatelessWidget {
   final MainAxisAlignment alignment;
   final Function()? onTapLink;
 
-  const TextWithLinkComponent({
-    super.key,
-    required this.text,
-    required this.textLink,
-    required this.alignment,
-    this.onTapLink
-  });
+  const TextWithLinkComponent(
+      {super.key,
+      required this.text,
+      required this.textLink,
+      required this.alignment,
+      this.onTapLink});
 
   @override
   Widget build(BuildContext context) {
@@ -22,21 +21,16 @@ class TextWithLinkComponent extends StatelessWidget {
       children: [
         Text(
           text,
-          style: const TextStyle(
-            fontSize: 12, 
-            fontWeight: FontWeight.w500
-          ),
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
         ),
-
         GestureDetector(
           onTap: onTapLink,
           child: Text(
             textLink,
             style: const TextStyle(
-              fontSize: 12, 
-              fontWeight: FontWeight.w500, 
-              color: colorYellow
-            ),
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: YPUtils.colorYellow),
           ),
         )
       ],

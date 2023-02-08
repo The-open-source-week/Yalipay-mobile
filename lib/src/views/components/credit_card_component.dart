@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
@@ -8,20 +7,18 @@ class CreditCardComponent extends StatefulWidget {
   final Color color;
   final bool showOptions;
   final void Function()? onTapOptionBtn;
-  const CreditCardComponent({
-    super.key, 
-    this.margin, 
-    required this.color, 
-    this.showOptions = false, 
-    this.onTapOptionBtn
-  });
+  const CreditCardComponent(
+      {super.key,
+      this.margin,
+      required this.color,
+      this.showOptions = false,
+      this.onTapOptionBtn});
 
   @override
   State<CreditCardComponent> createState() => _CreditCardComponentState();
 }
 
 class _CreditCardComponentState extends State<CreditCardComponent> {
-
   bool enable = true;
 
   @override
@@ -30,14 +27,9 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
       height: 190,
       width: context.sizeDevice.width,
       margin: widget.margin,
-      padding: const EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: 13
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 13),
       decoration: BoxDecoration(
-        color: widget.color,
-        borderRadius: BorderRadius.circular(10)
-      ),
+          color: widget.color, borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -47,105 +39,88 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
               const Text(
                 "Saldo",
                 style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w100,
-                  fontSize: 25,
-                  fontFamily: fontInterBold
-                ),
-              ),
-
-              widget.showOptions
-              ? GestureDetector(
-                onTap: widget.onTapOptionBtn,
-                child: Image.asset(
-                  optionWhiteIcon,
-                  height: 20,
-                  width: 20,
-                ),
-              )
-              : GestureDetector(
-                onTap: () => setState(() => enable = !enable),
-                child: Container(
-                  width: 30,
-                  height: 15,
-                  padding: const EdgeInsets.all(2),
-                  decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(30)
-                  ),
-                  child: AnimatedAlign(
-                    alignment: enable ? Alignment.centerLeft : Alignment.centerRight, 
-                    duration: const Duration(milliseconds: 250),
-                    child: Container(
-                      width: 14,
-                      height: 14,
-                      decoration: const BoxDecoration(
-                        color: Color(0xff4F339A),
-                        shape: BoxShape.circle
+                    fontWeight: FontWeight.w100,
+                    fontSize: 25,
+                    fontFamily: YPUtils.fontInterBold),
+              ),
+              widget.showOptions
+                  ? GestureDetector(
+                      onTap: widget.onTapOptionBtn,
+                      child: Image.asset(
+                        YPUtils.optionWhiteIcon,
+                        height: 20,
+                        width: 20,
                       ),
-                    ),
-                  ),
-                ),
-              )
+                    )
+                  : GestureDetector(
+                      onTap: () => setState(() => enable = !enable),
+                      child: Container(
+                        width: 30,
+                        height: 15,
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(30)),
+                        child: AnimatedAlign(
+                          alignment: enable
+                              ? Alignment.centerLeft
+                              : Alignment.centerRight,
+                          duration: const Duration(milliseconds: 250),
+                          child: Container(
+                            width: 14,
+                            height: 14,
+                            decoration: const BoxDecoration(
+                                color: Color(0xff4F339A),
+                                shape: BoxShape.circle),
+                          ),
+                        ),
+                      ),
+                    )
             ],
           ),
-
-
           const SizedBox(height: 10),
-
-
           Row(
             children: const [
               Text(
                 "AOA ",
                 style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w100,
-                  fontSize: 23,
-                  fontFamily: fontInterBold
-                ),
+                    color: Colors.white,
+                    fontWeight: FontWeight.w100,
+                    fontSize: 23,
+                    fontFamily: YPUtils.fontInterBold),
               ),
-
-
               Text(
                 "2,534,768.00",
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 23,
-                  fontFamily: fontInterLight
-                ),
+                    color: Colors.white,
+                    fontSize: 23,
+                    fontFamily: YPUtils.fontInterLight),
               )
             ],
           ),
-
           const Spacer(),
-
           const Text(
             "Número do Cartão",
             style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-              fontSize: 12
-            ),
+                color: Colors.white, fontWeight: FontWeight.w600, fontSize: 12),
           ),
-
-          const SizedBox(height: 7,),
-
+          const SizedBox(
+            height: 7,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-             const Text(
+              const Text(
                 "1234 4567 6553 1389",
                 style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: fontInter,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 10
-                ),
+                    color: Colors.white,
+                    fontFamily: YPUtils.fontInter,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 10),
               ),
-
               Image.asset(
-                visaIcon,
+                YPUtils.visaIcon,
                 height: 12,
                 width: 38,
               )

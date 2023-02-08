@@ -11,12 +11,11 @@ class AppView extends StatelessWidget {
       title: "YaliPay",
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        primaryColor: colorYellow,
-        scaffoldBackgroundColor: colorBlackBG,
-        textTheme: const TextTheme(
-          bodyText2: TextStyle(fontFamily: fontPoppins),
-        )
-      ),
+          primaryColor: YPUtils.colorYellow,
+          scaffoldBackgroundColor: YPUtils.colorBlackBG,
+          textTheme: const TextTheme(
+            bodyText2: TextStyle(fontFamily: YPUtils.fontPoppins),
+          )),
       home: const SplashView(),
     );
   }

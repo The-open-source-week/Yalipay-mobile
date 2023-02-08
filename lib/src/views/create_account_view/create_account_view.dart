@@ -1,6 +1,6 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yalipay/src/controllers/register_controller.dart';
 import 'package:yalipay/src/utils/navigator_util.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
 import 'package:yalipay/src/views/components/custom_button_component.dart';
@@ -19,68 +19,86 @@ class CreateAccountView extends StatefulWidget {
 class _CreateAccountViewState extends State<CreateAccountView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        height: context.sizeDevice.height,
-        width: context.sizeDevice.width,
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-
-                const SizedBox(height: 40,),
-
-                const IntroTextComponent(vault: true,),
-                const SizedBox(height: 51,),
-
-                const CustomTextfieldComponent(
-                  label: "Username", 
-                  hint: "Insira seu username",
-                  textInputType: TextInputType.text,
+    return ChangeNotifierProvider(
+      create: (context) => RegisterController(),
+      child: Consumer<RegisterController>(
+        builder: (context, provider, child) => Scaffold(
+          body: SizedBox(
+            height: context.sizeDevice.height,
+            width: context.sizeDevice.width,
+            child: Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    const IntroTextComponent(
+                      vault: true,
+                    ),
+                    const SizedBox(
+                      height: 51,
+                    ),
+                    CustomTextfieldComponent(
+                      controller: provider.userNameController,
+                      label: "Username",
+                      hint: "Insira seu username",
+                      textInputType: TextInputType.text,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    CustomTextfieldComponent(
+                      controller: provider.numeroDeTelefoneController,
+                      label: "Número Telefone",
+                      hint: "Insira seu telefone",
+                      textInputType: TextInputType.phone,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    CustomTextfieldComponent(
+                      controller: provider.emailController,
+                      label: "E-mail",
+                      hint: "Insira seu e-mail",
+                      textInputType: TextInputType.emailAddress,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    CustomTextfieldComponent(
+                      controller: provider.passwordController,
+                      label: "Senha",
+                      hint: "Insira sua senha",
+                      isPwd: true,
+                      textInputType: TextInputType.text,
+                    ),
+                    const SizedBox(
+                      height: 64,
+                    ),
+                    CustomButtonCompoent(
+                      title: "Cadastrar",
+                      onTap: () => provider.register(),
+                    ),
+                    const SizedBox(
+                      height: 17,
+                    ),
+                    TextWithLinkComponent(
+                      text: "Já tenho conta. ",
+                      textLink: "Entrar",
+                      alignment: MainAxisAlignment.center,
+                      onTapLink: () => GoTo.pageWithoutReturn(context,
+                          page: const LoginView()),
+                    ),
+                    const SizedBox(
+                      height: 54,
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 30,),
-
-                const CustomTextfieldComponent(
-                  label: "Número Telefone", 
-                  hint: "Insira seu telefone",
-                  textInputType: TextInputType.phone,
-                ),
-                const SizedBox(height: 30,),
-
-
-                const CustomTextfieldComponent(
-                  label: "E-mail", 
-                  hint: "Insira seu e-mail",
-                  textInputType: TextInputType.emailAddress,
-                ),
-                const SizedBox(height: 30,),
-
-                const CustomTextfieldComponent(
-                  label: "Senha", 
-                  hint: "Insira sua senha",
-                  isPwd: true,
-                  textInputType: TextInputType.text,
-                ),
-                
-                const SizedBox(height: 64,),   
-
-                const CustomButtonCompoent(title: "Cadastrar"),
-                const SizedBox(height: 17,),
-
-                TextWithLinkComponent(
-                  text: "Já tenho conta. ", 
-                  textLink: "Entrar", 
-                  alignment: MainAxisAlignment.center,
-                  onTapLink: () => GoTo.pageWithoutReturn(context, page: const LoginView()),
-                ),
-                const SizedBox(height: 54,),
-                
-              ],
+              ),
             ),
           ),
         ),

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/views/components/credit_card_component.dart';
@@ -14,7 +12,6 @@ class HistoricView extends StatefulWidget {
 }
 
 class _HistoricViewState extends State<HistoricView> {
-
   final scrollController = ScrollController();
   bool showShadowAppBar = false;
 
@@ -22,7 +19,6 @@ class _HistoricViewState extends State<HistoricView> {
 
   @override
   void initState() {
-
     scrollController.addListener(() {
       setState(() => showShadowAppBar = scrollController.offset > 4);
     });
@@ -35,60 +31,52 @@ class _HistoricViewState extends State<HistoricView> {
     return Scaffold(
       body: Column(
         children: [
-
-          const SizedBox(height: 43,),
-          
+          const SizedBox(
+            height: 43,
+          ),
           CustomAppBarComponent(
             showShadowAppBar: showShadowAppBar,
           ),
-
           Expanded(
             child: ListView(
               controller: scrollController,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 23
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 23),
               children: [
-
                 const CreditCardComponent(
                   color: Color(0xff4F339A),
                 ),
-
-                const SizedBox(height: 41,),
-
+                const SizedBox(
+                  height: 41,
+                ),
                 Row(
                   children: const [
-
                     Text(
                       "Movimentos ",
                       style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 15,
-                        fontFamily: fontPoppinsMedium,
-                        color: Colors.white
-                      ),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 15,
+                          fontFamily: YPUtils.fontPoppinsMedium,
+                          color: Colors.white),
                     ),
-
                     Text(
                       "Recentes",
                       style: TextStyle(
-                        fontWeight: FontWeight.w100,
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontFamily: fontPoppinsLight
-                      ),
+                          fontWeight: FontWeight.w100,
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontFamily: YPUtils.fontPoppinsLight),
                     )
                   ],
                 ),
-
-                const SizedBox(height: 25,),
-
-
+                const SizedBox(
+                  height: 25,
+                ),
                 Column(
                   children: List.generate(
-                    10, 
-                    (index) => MovementComponent(isDebit: index.isOdd,)
-                  ),
+                      10,
+                      (index) => MovementComponent(
+                            isDebit: index.isOdd,
+                          )),
                 )
               ],
             ),

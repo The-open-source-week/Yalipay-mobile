@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/utils/navigator_util.dart';
@@ -15,15 +13,13 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-
   @override
   void initState() {
-    Future.delayed(
-      const Duration(seconds: 5),
-      () => GoTo.pageWithoutReturn(context, page: const WelcomeView())
-    );
+    Future.delayed(const Duration(seconds: 5),
+        () => GoTo.pageWithoutReturn(context, page: const WelcomeView()));
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,15 +27,13 @@ class _SplashViewState extends State<SplashView> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-
           const Spacer(),
-
           const IntroTextComponent(),
-
-          const SizedBox(height: 60,),
-
+          const SizedBox(
+            height: 60,
+          ),
           Image.asset(
-            handImage,
+            YPUtils.handImage,
             height: context.sizeDevice.height / 2,
             width: 236,
             fit: BoxFit.fill,

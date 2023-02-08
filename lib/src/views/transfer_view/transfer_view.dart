@@ -15,19 +15,18 @@ class TransferView extends StatefulWidget {
 }
 
 class _TransferViewState extends State<TransferView> {
-
   final scrollController = ScrollController();
   bool showShadowAppBar = false;
 
   @override
   void initState() {
-
     scrollController.addListener(() {
       setState(() => showShadowAppBar = scrollController.offset > 4);
     });
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,80 +36,69 @@ class _TransferViewState extends State<TransferView> {
           width: context.sizeDevice.width,
           child: Column(
             children: [
-
-              const SizedBox(height: 43,),
-
-              CustomAppBarComponent(
-                showShadowAppBar: showShadowAppBar
+              const SizedBox(
+                height: 43,
               ),
-
+              CustomAppBarComponent(showShadowAppBar: showShadowAppBar),
               Expanded(
                 child: ListView(
                   controller: scrollController,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 23
-                  ),
-
+                  padding: const EdgeInsets.symmetric(horizontal: 23),
                   children: [
-
-                    const SizedBox(height: 20,),
-
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const Text(
                       "Transferir",
                       style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                        fontFamily: fontPoppinsMedium
-                      ),
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                          fontFamily: YPUtils.fontPoppinsMedium),
                     ),
-
-                    const SizedBox(height: 20,),
-
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const CustomTextfieldComponent(
-                      label: "IBAN", 
+                      label: "IBAN",
                       hint: "Insira o iban",
                       textInputType: TextInputType.number,
                     ),
-
-                    const SizedBox(height: 30,),
-
+                    const SizedBox(
+                      height: 30,
+                    ),
                     const CustomTextfieldComponent(
-                      label: "Montante", 
+                      label: "Montante",
                       hint: "Insira o montante",
                       textInputType: TextInputType.number,
                     ),
-
-                    SizedBox(height: context.sizeDevice.height / 3.2,),
-
+                    SizedBox(
+                      height: context.sizeDevice.height / 3.2,
+                    ),
                     CustomButtonCompoent(
                       title: "Transferir",
-                      onTap: () => GoTo.page(context, page:  const VerificationPinView()),
+                      onTap: () =>
+                          GoTo.page(context, page: const VerificationPinView()),
                     ),
-
-
-                    const SizedBox(height: 17,),
-
+                    const SizedBox(
+                      height: 17,
+                    ),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
                       child: const Center(
                         child: Text(
                           "Cancelar Operação",
                           style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                            fontFamily: fontPoppinsMedium
-                          ),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              fontFamily: YPUtils.fontPoppinsMedium),
                         ),
                       ),
                     ),
-                    
                   ],
                 ),
               )
-
-
             ],
           ),
         ),

@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 
+class YPUtils {
 // IMAGES
-const handImage         = "assets/imgs/hand.png";
-const avatarImage       = "assets/imgs/avatar.png";
-const cloudCheckImage   = "assets/imgs/cloud-check.png";
+  static const handImage = "assets/imgs/hand.png";
+  static const avatarImage = "assets/imgs/avatar.png";
+  static const cloudCheckImage = "assets/imgs/cloud-check.png";
 
 // ICONS
-const homeYellowIcon    = "assets/imgs/icons/home-yellow.png";
-const homeWhiteIcon     = "assets/imgs/icons/home-white.png";
-const folderYellowIcon  = "assets/imgs/icons/folder-yellow.png";
-const folderWhiteIcon   = "assets/imgs/icons/folder-white.png";
-const addWhiteIcon      = "assets/imgs/icons/add-white.png";
-const optionWhiteIcon   = "assets/imgs/icons/option-white.png";
-const transferWhiteIcon = "assets/imgs/icons/transfer-white.png";
-const visaIcon          = "assets/imgs/icons/visa.png";
+  static const homeYellowIcon = "assets/imgs/icons/home-yellow.png";
+  static const homeWhiteIcon = "assets/imgs/icons/home-white.png";
+  static const folderYellowIcon = "assets/imgs/icons/folder-yellow.png";
+  static const folderWhiteIcon = "assets/imgs/icons/folder-white.png";
+  static const addWhiteIcon = "assets/imgs/icons/add-white.png";
+  static const optionWhiteIcon = "assets/imgs/icons/option-white.png";
+  static const transferWhiteIcon = "assets/imgs/icons/transfer-white.png";
+  static const visaIcon = "assets/imgs/icons/visa.png";
 
 // FONTS
-const fontPoppins            = "poppins";
-const fontPoppinsMedium      = "poppins-medium";
-const fontPoppinsLight       = "poppins-light";
-const fontInter              = "inter";
-const fontInterLight         = "inter-light";
-const fontInterBold          = "inter-bold";
+  static const fontPoppins = "poppins";
+  static const fontPoppinsMedium = "poppins-medium";
+  static const fontPoppinsLight = "poppins-light";
+  static const fontInter = "inter";
+  static const fontInterLight = "inter-light";
+  static const fontInterBold = "inter-bold";
 
 // COLORS
-const colorYellow  = Color(0xffFCEE21);
-const colorBlackBG = Color(0xff131313);
-
+  static const colorYellow = Color(0xffFCEE21);
+  static const colorBlackBG = Color(0xff131313);
+}

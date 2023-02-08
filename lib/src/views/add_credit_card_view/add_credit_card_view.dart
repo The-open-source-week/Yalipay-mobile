@@ -15,19 +15,18 @@ class AddCreditCardView extends StatefulWidget {
 }
 
 class _AddCreditCardViewState extends State<AddCreditCardView> {
-
   final scrollController = ScrollController();
   bool showShadowAppBar = false;
 
   @override
   void initState() {
-
     scrollController.addListener(() {
       setState(() => showShadowAppBar = scrollController.offset > 4);
     });
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,73 +36,61 @@ class _AddCreditCardViewState extends State<AddCreditCardView> {
           width: context.sizeDevice.width,
           child: Column(
             children: [
-
-              const SizedBox(height: 43,),
-
-              CustomAppBarComponent(
-                showShadowAppBar: showShadowAppBar
+              const SizedBox(
+                height: 43,
               ),
-
+              CustomAppBarComponent(showShadowAppBar: showShadowAppBar),
               Expanded(
                 child: ListView(
                   controller: scrollController,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 23
-                  ),
-
+                  padding: const EdgeInsets.symmetric(horizontal: 23),
                   children: [
-
-                    const SizedBox(height: 20,),
-
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const Text(
                       "Add Cartão",
                       style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                        fontFamily: fontPoppinsMedium
-                      ),
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                          fontFamily: YPUtils.fontPoppinsMedium),
                     ),
-
-                    const SizedBox(height: 20,),
-
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const CustomTextfieldComponent(
-                      label: "Número do Cartão", 
+                      label: "Número do Cartão",
                       hint: "Insira o Número do Cartão",
                       textInputType: TextInputType.number,
                     ),
-
-                    
-                    SizedBox(height: context.sizeDevice.height / 2.2,),
-
+                    SizedBox(
+                      height: context.sizeDevice.height / 2.2,
+                    ),
                     CustomButtonCompoent(
                       title: "Confirmar",
-                      onTap: () => GoTo.page(context, page:  const VerificationPinView()),
+                      onTap: () =>
+                          GoTo.page(context, page: const VerificationPinView()),
                     ),
-
-
-                    const SizedBox(height: 17,),
-
+                    const SizedBox(
+                      height: 17,
+                    ),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
                       child: const Center(
                         child: Text(
                           "Cancelar Operação",
                           style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                            fontFamily: fontPoppinsMedium
-                          ),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              fontFamily: YPUtils.fontPoppinsMedium),
                         ),
                       ),
                     ),
-                    
                   ],
                 ),
               )
-
-
             ],
           ),
         ),

@@ -13,7 +13,6 @@ class ConfirmTransferView extends StatefulWidget {
 }
 
 class _ConfirmTransferViewState extends State<ConfirmTransferView> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,58 +22,48 @@ class _ConfirmTransferViewState extends State<ConfirmTransferView> {
           width: context.sizeDevice.width,
           child: Column(
             children: [
-
-              const SizedBox(height: 43,),
-
-              const CustomAppBarComponent(
-                showShadowAppBar: false
+              const SizedBox(
+                height: 43,
               ),
-
+              const CustomAppBarComponent(showShadowAppBar: false),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-
-
                     Image.asset(
-                      cloudCheckImage,
+                      YPUtils.cloudCheckImage,
                       height: 72.73,
                     ),
-
-                    const SizedBox(height: 20,),
-
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const Text(
                       "Sua transferência foi realizada\ncom sucesso",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        color: Colors.white
-                      ),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.white),
                     ),
-
-                    const SizedBox(height: 84,),
-
-
+                    const SizedBox(
+                      height: 84,
+                    ),
                     GestureDetector(
-                      onTap: () => GoTo.pageWithoutReturn(context, page: const HomeView()),
+                      onTap: () => GoTo.pageWithoutReturn(context,
+                          page: const HomeView()),
                       child: const Text(
                         "Voltar ao Inicio",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
-                          color: colorYellow
-                        ),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                            color: YPUtils.colorYellow),
                       ),
-                    ),                 
-                    
+                    ),
                   ],
                 ),
               )
-
-
             ],
           ),
         ),
