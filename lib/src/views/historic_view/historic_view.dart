@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yalipay/src/models/card_model.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/views/components/credit_card_component.dart';
 import 'package:yalipay/src/views/components/custom_app_component.dart';
@@ -42,7 +43,8 @@ class _HistoricViewState extends State<HistoricView> {
               controller: scrollController,
               padding: const EdgeInsets.symmetric(horizontal: 23),
               children: [
-                const CreditCardComponent(
+                CreditCardComponent(
+                  cardData: CardModel(cardNumber: "24353453", amount: 454343),
                   color: Color(0xff4F339A),
                 ),
                 const SizedBox(

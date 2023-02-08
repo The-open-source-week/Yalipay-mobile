@@ -39,6 +39,8 @@ dependencies:
   provider: ^6.0.5
   dio: ^4.0.6
   logger: ^1.1.0
+  shared_preferences: ^2.0.17
+  jwt_decoder: ^2.0.1
 
 dev_dependencies:
   flutter_test:

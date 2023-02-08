@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yalipay/src/controllers/cards_controller.dart';
+import 'package:yalipay/src/models/card_model.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/utils/navigator_util.dart';
 import 'package:yalipay/src/views/add_credit_card_view/add_credit_card_view.dart';
@@ -19,6 +22,7 @@ class _CreditCardViewState extends State<CreditCardView> {
 
   @override
   void initState() {
+    context.read<CardsController>().getCards(context);
     scrollController.addListener(() {
       setState(() => showShadowAppBar = scrollController.offset > 4);
     });
@@ -35,8 +39,9 @@ class _CreditCardViewState extends State<CreditCardView> {
             height: 43,
           ),
           CustomAppBarComponent(showShadowAppBar: showShadowAppBar),
-          Expanded(
-            child: ListView(
+          Consumer<CardsController>(
+            builder: (context, provider, child) => Expanded(
+              child: ListView(
                 controller: scrollController,
                 padding: const EdgeInsets.symmetric(horizontal: 23),
                 children: [
@@ -68,24 +73,53 @@ class _CreditCardViewState extends State<CreditCardView> {
                   const SizedBox(
                     height: 41,
                   ),
-                  Column(
-                    children: List.generate(
-                      3,
-                      (index) => CreditCardComponent(
-                        showOptions: true,
-                        margin: const EdgeInsets.only(bottom: 15),
-                        color: index == 1
-                            ? const Color(0xffED1E79)
-                            : const Color(0xff4F339A),
-                        onTapOptionBtn: () => showDialog(
-                            context: context,
-                            builder: (ctx) => const Dialog(
-                                  child: AlertOptions(),
-                                )),
-                      ),
-                    ),
-                  )
-                ]),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.65,
+                    width: MediaQuery.of(context).size.width,
+                    child: provider.cardsList.isEmpty
+                        ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.error,
+                                  size: 50,
+                                  color: Colors.amber.withOpacity(0.4),
+                                ),
+                                const Text(
+                                  "Lista Vazia",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.white24,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        : ListView.builder(
+                            itemCount: provider.cardsList.length,
+                            itemBuilder: (context, index) =>
+                                CreditCardComponent(
+                              cardData: CardModel(
+                                  cardNumber:
+                                      provider.cardsList[index].cardNumber,
+                                  amount: provider.cardsList[index].amount),
+                              showOptions: true,
+                              margin: const EdgeInsets.only(bottom: 15),
+                              color: index == 1
+                                  ? const Color(0xffED1E79)
+                                  : Colors.green,
+                              onTapOptionBtn: () => showDialog(
+                                  context: context,
+                                  builder: (ctx) => const Dialog(
+                                        child: AlertOptions(),
+                                      )),
+                            ),
+                          ),
+                  ),
+                ],
+              ),
+            ),
           )
         ],
       ),

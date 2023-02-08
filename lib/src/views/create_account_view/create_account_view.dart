@@ -81,7 +81,7 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                     ),
                     CustomButtonCompoent(
                       title: "Cadastrar",
-                      onTap: () => provider.register(),
+                      onTap: () => provider.register(context),
                     ),
                     const SizedBox(
                       height: 17,

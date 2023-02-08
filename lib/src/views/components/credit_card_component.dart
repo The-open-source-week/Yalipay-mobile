@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yalipay/src/models/card_model.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
 
@@ -6,10 +7,12 @@ class CreditCardComponent extends StatefulWidget {
   final EdgeInsets? margin;
   final Color color;
   final bool showOptions;
+  final CardModel cardData;
   final void Function()? onTapOptionBtn;
   const CreditCardComponent(
       {super.key,
       this.margin,
+      required this.cardData,
       required this.color,
       this.showOptions = false,
       this.onTapOptionBtn});
@@ -81,8 +84,8 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
           ),
           const SizedBox(height: 10),
           Row(
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "AOA ",
                 style: TextStyle(
                     color: Colors.white,
@@ -91,8 +94,8 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
                     fontFamily: YPUtils.fontInterBold),
               ),
               Text(
-                "2,534,768.00",
-                style: TextStyle(
+                "${widget.cardData.amount ?? "0"}",
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 23,
                     fontFamily: YPUtils.fontInterLight),
@@ -111,9 +114,9 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "1234 4567 6553 1389",
-                style: TextStyle(
+              Text(
+                "${widget.cardData.cardNumber ?? "00"}",
+                style: const TextStyle(
                     color: Colors.white,
                     fontFamily: YPUtils.fontInter,
                     fontWeight: FontWeight.w600,

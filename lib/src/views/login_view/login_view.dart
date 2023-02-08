@@ -29,27 +29,21 @@ class LoginView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    //const Spacer(),
-
                     const IntroTextComponent(
                       vault: true,
                     ),
-
                     const SizedBox(
                       height: 51,
                     ),
-
                     CustomTextfieldComponent(
                       controller: provider.emailController,
                       label: "Email",
                       hint: "Insira o seu email",
                       textInputType: TextInputType.emailAddress,
                     ),
-
                     const SizedBox(
                       height: 30,
                     ),
-
                     CustomTextfieldComponent(
                       controller: provider.passwordController,
                       label: "Senha",
@@ -57,31 +51,25 @@ class LoginView extends StatelessWidget {
                       isPwd: true,
                       textInputType: TextInputType.text,
                     ),
-
                     const SizedBox(
                       height: 17,
                     ),
-
                     const TextWithLinkComponent(
                         text: "Esqueci minha senha. ",
                         textLink: "Recuperar",
                         alignment: MainAxisAlignment.end),
-
                     const SizedBox(
                       height: 85,
                     ),
-
                     CustomButtonCompoent(
                         title: "Entrar",
                         onTap: () {
-                          // provider.login();
-                          GoTo.page(context, page: const HomeView());
+                          provider.login(context);
+                          // GoTo.page(context, page: const HomeView());
                         }),
-
                     const SizedBox(
                       height: 17,
                     ),
-
                     TextWithLinkComponent(
                       text: "Não tenho conta. ",
                       textLink: "Criar",
