@@ -5,8 +5,6 @@ import 'package:yalipay/src/models/card_model.dart';
 import 'package:yalipay/src/utils/alerts.dart';
 import 'package:yalipay/src/utils/api_helper.dart';
 import 'package:yalipay/src/utils/local_storage.dart';
-import 'package:yalipay/src/utils/navigator_util.dart';
-import 'package:yalipay/src/views/credit_card_view/credit_card_view.dart';
 
 class CardsController extends ChangeNotifier {
   TextEditingController cardNumberController = TextEditingController();

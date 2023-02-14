@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yalipay/src/controllers/home_controller.dart';
 import 'package:yalipay/src/models/card_model.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/views/components/credit_card_component.dart';
@@ -29,6 +31,7 @@ class _HistoricViewState extends State<HistoricView> {
 
   @override
   Widget build(BuildContext context) {
+    var homeController = context.read<HomeController>();
     return Scaffold(
       body: Column(
         children: [
@@ -73,13 +76,38 @@ class _HistoricViewState extends State<HistoricView> {
                 const SizedBox(
                   height: 25,
                 ),
-                Column(
-                  children: List.generate(
-                      10,
-                      (index) => MovementComponent(
-                            isDebit: index.isOdd,
-                          )),
-                )
+                Column(children: [
+                  if (homeController.movimentos.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 100.0),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              YPUtils.emptyMovements,
+                              height: 100,
+                              width: 100,
+                            ),
+                            const Text(
+                              "Sem movimentos",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w100,
+                                  fontSize: 15,
+                                  color: Colors.white30,
+                                  fontFamily: YPUtils.fontPoppinsLight),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ...List.generate(
+                    homeController.movimentos.length,
+                    (index) => MovementComponent(
+                      isDebit: index.isOdd,
+                    ),
+                  )
+                ])
               ],
             ),
           )

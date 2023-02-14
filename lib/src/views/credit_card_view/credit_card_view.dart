@@ -106,9 +106,7 @@ class _CreditCardViewState extends State<CreditCardView> {
                                   amount: provider.cardsList[index].amount),
                               showOptions: true,
                               margin: const EdgeInsets.only(bottom: 15),
-                              color: index == 1
-                                  ? const Color(0xffED1E79)
-                                  : Colors.green,
+                              color: Color(0xff4F339A),
                               onTapOptionBtn: () => showDialog(
                                   context: context,
                                   builder: (ctx) => const Dialog(

@@ -32,17 +32,19 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
       margin: widget.margin,
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 13),
       decoration: BoxDecoration(
-          color: widget.color, borderRadius: BorderRadius.circular(10)),
+          color: enable ? widget.color : widget.color.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 "Saldo",
                 style: TextStyle(
-                    color: Colors.white,
+                    color:
+                        enable ? Colors.white : Colors.white.withOpacity(0.2),
                     fontWeight: FontWeight.w100,
                     fontSize: 25,
                     fontFamily: YPUtils.fontInterBold),
@@ -63,12 +65,14 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
                         height: 15,
                         padding: const EdgeInsets.all(2),
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: enable
+                                ? Colors.white
+                                : Colors.white.withOpacity(0.4),
                             borderRadius: BorderRadius.circular(30)),
                         child: AnimatedAlign(
                           alignment: enable
-                              ? Alignment.centerLeft
-                              : Alignment.centerRight,
+                              ? Alignment.centerRight
+                              : Alignment.centerLeft,
                           duration: const Duration(milliseconds: 250),
                           child: Container(
                             width: 14,
@@ -85,28 +89,32 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
           const SizedBox(height: 10),
           Row(
             children: [
-              const Text(
+              Text(
                 "AOA ",
                 style: TextStyle(
-                    color: Colors.white,
+                    color:
+                        enable ? Colors.white : Colors.white.withOpacity(0.2),
                     fontWeight: FontWeight.w100,
                     fontSize: 23,
                     fontFamily: YPUtils.fontInterBold),
               ),
               Text(
                 "${widget.cardData.amount ?? "0"}",
-                style: const TextStyle(
-                    color: Colors.white,
+                style: TextStyle(
+                    color:
+                        enable ? Colors.white : Colors.white.withOpacity(0.2),
                     fontSize: 23,
                     fontFamily: YPUtils.fontInterLight),
               )
             ],
           ),
           const Spacer(),
-          const Text(
+          Text(
             "Número do Cartão",
             style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.w600, fontSize: 12),
+                color: enable ? Colors.white : Colors.white.withOpacity(0.2),
+                fontWeight: FontWeight.w600,
+                fontSize: 12),
           ),
           const SizedBox(
             height: 7,
@@ -116,16 +124,20 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
             children: [
               Text(
                 "${widget.cardData.cardNumber ?? "00"}",
-                style: const TextStyle(
-                    color: Colors.white,
+                style: TextStyle(
+                    color:
+                        enable ? Colors.white : Colors.white.withOpacity(0.2),
                     fontFamily: YPUtils.fontInter,
                     fontWeight: FontWeight.w600,
                     fontSize: 10),
               ),
-              Image.asset(
-                YPUtils.visaIcon,
-                height: 12,
-                width: 38,
+              Opacity(
+                opacity: enable ? 1 : 0.2,
+                child: Image.asset(
+                  YPUtils.visaIcon,
+                  height: 12,
+                  width: 38,
+                ),
               )
             ],
           )

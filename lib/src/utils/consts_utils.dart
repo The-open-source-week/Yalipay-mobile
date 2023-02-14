@@ -4,6 +4,7 @@ class YPUtils {
 // IMAGES
   static const handImage = "assets/imgs/hand.png";
   static const avatarImage = "assets/imgs/avatar.png";
+  static const emptyMovements = "assets/imgs/bank.png";
   static const cloudCheckImage = "assets/imgs/cloud-check.png";
 
 // ICONS
