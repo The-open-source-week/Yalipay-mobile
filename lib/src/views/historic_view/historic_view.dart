@@ -77,7 +77,7 @@ class _HistoricViewState extends State<HistoricView> {
                   height: 25,
                 ),
                 Column(children: [
-                  if (homeController.movimentos.isEmpty)
+                  if (homeController.movements.isEmpty)
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 100.0),
                       child: Center(
@@ -102,7 +102,7 @@ class _HistoricViewState extends State<HistoricView> {
                       ),
                     ),
                   ...List.generate(
-                    homeController.movimentos.length,
+                    homeController.movements.length,
                     (index) => MovementComponent(
                       isDebit: index.isOdd,
                     ),

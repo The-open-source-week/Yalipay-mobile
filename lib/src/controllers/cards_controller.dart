@@ -25,13 +25,147 @@ class CardsController extends ChangeNotifier {
       var card = CardModel.fromJson(response.data);
       result = card;
       cardsList.add(card);
-      print(cardsList.length);
+      notifyListeners();
+      if (card != null) {
+        context.showYPSnackbar(
+          'Cartão Adicionado com sucesso',
+          SnackBarType.success,
+        );
+        Navigator.pop(context);
+      }
+    } on DioError catch (e) {
+      logger.e(e.error);
+    }
+    return result;
+  }
+
+  Future<Object> updateCard(BuildContext context) async {
+    var result;
+    try {
+      var token = await YPStorage.getToken();
+      var response = await APIHelper.dio.post(APIRoutes.createCard,
+          data:
+              CardModel(cardNumber: cardNumberController.text).createCardBody(),
+          options:
+              Options(headers: {"Authorization": "Bearer ${token.token}"}));
+
+      var card = CardModel.fromJson(response.data);
+      result = card;
+      cardsList.add(card);
+      notifyListeners();
+      if (card != null) {
+        context.showYPSnackbar(
+          'Cartão Adicionado com sucesso',
+          SnackBarType.success,
+        );
+        Navigator.pop(context);
+      }
+    } on DioError catch (e) {
+      logger.e(e.error);
+    }
+    return result;
+  }
+
+  Future<Object> activateCard(BuildContext context, CardModel cardModel) async {
+    var result;
+    try {
+      var token = await YPStorage.getToken();
+      var response = await APIHelper.dio.patch(
+          "${APIRoutes.activateCard}${cardModel.id}",
+          options:
+              Options(headers: {"Authorization": "Bearer ${token.token}"}));
+
+      var card = CardModel.fromJson(response.data);
+      result = card;
+      cardsList.add(card);
+      notifyListeners();
+      if (card != null) {
+        context.showYPSnackbar(
+          'Cartão Atualizado com sucesso',
+          SnackBarType.success,
+        );
+        Navigator.pop(context);
+      }
+    } on DioError catch (e) {
+      logger.e(e.error);
+    }
+    return result;
+  }
+
+  Future<Object> deactivateCard(
+      BuildContext context, CardModel cardModel) async {
+    var result;
+    try {
+      var token = await YPStorage.getToken();
+      var response = await APIHelper.dio.patch(
+          "${APIRoutes.deactivateCard}${cardModel.id}",
+          options:
+              Options(headers: {"Authorization": "Bearer ${token.token}"}));
+
+      var card = CardModel.fromJson(response.data);
+      result = card;
+      cardsList.add(card);
       notifyListeners();
       if (card != null) {
         // ignore: use_build_context_synchronously
-        // ignore: curly_braces_in_flow_control_structures
         context.showYPSnackbar(
-            'Cartão Adicionado com sucesso', SnackBarType.success);
+          'Cartão Atualizado com sucesso',
+          SnackBarType.success,
+        );
+        Navigator.pop(context);
+      }
+    } on DioError catch (e) {
+      logger.e(e.error);
+    }
+    return result;
+  }
+
+  Future<Object> deleteCard(BuildContext context, CardModel cardModel) async {
+    var result;
+    try {
+      var token = await YPStorage.getToken();
+      var response = await APIHelper.dio.patch(
+          "${APIRoutes.deleteCard}${cardModel.id}",
+          options:
+              Options(headers: {"Authorization": "Bearer ${token.token}"}));
+
+      var card = CardModel.fromJson(response.data);
+      result = card;
+      cardsList.add(card);
+      notifyListeners();
+      if (card != null) {
+        context.showYPSnackbar(
+          'Cartão Atualizado com sucesso',
+          SnackBarType.success,
+        );
+        Navigator.pop(context);
+      }
+    } on DioError catch (e) {
+      logger.e(e.error);
+    }
+    return result;
+  }
+
+  Future<Object> activateMainCard(
+      BuildContext context, CardModel cardModel) async {
+    var result;
+    try {
+      var token = await YPStorage.getToken();
+      var response = await APIHelper.dio.patch(
+          "${APIRoutes.ativateMainCard}${cardModel.id}",
+          data: {"isMain": true},
+          options:
+              Options(headers: {"Authorization": "Bearer ${token.token}"}));
+
+      var card = CardModel.fromJson(response.data);
+      result = card;
+      cardsList.add(card);
+      notifyListeners();
+      if (card != null) {
+        context.showYPSnackbar(
+          'Cartão Atualizado com sucesso',
+          SnackBarType.success,
+        );
         Navigator.pop(context);
       }
     } on DioError catch (e) {

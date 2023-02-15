@@ -22,24 +22,6 @@ class _AlertOptionsState extends State<AlertOptions> {
       child: ListView(
         shrinkWrap: true,
         children: [
-          // Align(
-          //   alignment: Alignment.topRight,
-          //   child: GestureDetector(
-          //     onTap: () => Navigator.pop(context),
-          //     child: Container(
-          //       height: 20,
-          //       width: 20,
-          //       decoration: BoxDecoration(
-          //           color: Colors.white,
-          //           borderRadius: BorderRadius.circular(2)),
-          //       alignment: Alignment.center,
-          //       child: const Text(
-          //         "X",
-          //         style: TextStyle(color: Color(0xff161616)),
-          //       ),
-          //     ),
-          //   ),
-          // ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             const Text(
               "O que Deseja fazer?",

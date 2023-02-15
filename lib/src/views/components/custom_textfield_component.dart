@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 import 'package:yalipay/src/utils/size_device_util.dart';
+
+enum CustomTextfieldType { normal, phone, email, password, valor }
 
 class CustomTextfieldComponent extends StatelessWidget {
   final String label;
   final String hint;
   final TextInputType? textInputType;
   final bool isPwd;
+  final CustomTextfieldType? type;
   final TextEditingController? controller;
   const CustomTextfieldComponent(
       {super.key,
       required this.label,
       required this.hint,
       this.textInputType,
+      this.type = CustomTextfieldType.normal,
       this.isPwd = false,
       this.controller});
 
@@ -35,6 +40,8 @@ class CustomTextfieldComponent extends StatelessWidget {
                 color: const Color(0xff131313),
                 borderRadius: BorderRadius.circular(10)),
             child: TextField(
+              cursorColor: YPUtils.colorYellow.withOpacity(0.2),
+              inputFormatters: [],
               controller: controller,
               keyboardType: textInputType,
               obscureText: isPwd,

@@ -3,6 +3,13 @@ import 'package:yalipay/src/models/account_model.dart';
 import 'package:yalipay/src/models/token_model.dart';
 
 class YPStorage {
+  static Future<bool> clear() async {
+    var _pref = await SharedPreferences.getInstance();
+    var result = await _pref.clear();
+
+    return result;
+  }
+
   static Future<TokenModel> getToken() async {
     var _pref = await SharedPreferences.getInstance();
 
