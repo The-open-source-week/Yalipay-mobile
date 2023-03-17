@@ -8,10 +8,12 @@ class CreditCardComponent extends StatefulWidget {
   final Color color;
   final bool showOptions;
   final CardModel cardData;
+  bool? enable;
   final void Function()? onTapOptionBtn;
-  const CreditCardComponent(
+  CreditCardComponent(
       {super.key,
       this.margin,
+      this.enable = true,
       required this.cardData,
       required this.color,
       this.showOptions = false,
@@ -22,8 +24,6 @@ class CreditCardComponent extends StatefulWidget {
 }
 
 class _CreditCardComponentState extends State<CreditCardComponent> {
-  bool enable = true;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +32,7 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
       margin: widget.margin,
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 13),
       decoration: BoxDecoration(
-          color: enable ? widget.color : widget.color.withOpacity(0.2),
+          color: widget.enable! ? widget.color : widget.color.withOpacity(0.2),
           borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,8 +43,9 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
               Text(
                 "Saldo",
                 style: TextStyle(
-                    color:
-                        enable ? Colors.white : Colors.white.withOpacity(0.2),
+                    color: widget.enable!
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.2),
                     fontWeight: FontWeight.w100,
                     fontSize: 25,
                     fontFamily: YPUtils.fontInterBold),
@@ -59,18 +60,19 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
                       ),
                     )
                   : GestureDetector(
-                      onTap: () => setState(() => enable = !enable),
+                      onTap: () =>
+                          setState(() => widget.enable = !widget.enable!),
                       child: Container(
                         width: 30,
                         height: 15,
                         padding: const EdgeInsets.all(2),
                         decoration: BoxDecoration(
-                            color: enable
+                            color: widget.enable!
                                 ? Colors.white
                                 : Colors.white.withOpacity(0.4),
                             borderRadius: BorderRadius.circular(30)),
                         child: AnimatedAlign(
-                          alignment: enable
+                          alignment: widget.enable!
                               ? Alignment.centerRight
                               : Alignment.centerLeft,
                           duration: const Duration(milliseconds: 250),
@@ -92,8 +94,9 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
               Text(
                 "AOA ",
                 style: TextStyle(
-                    color:
-                        enable ? Colors.white : Colors.white.withOpacity(0.2),
+                    color: widget.enable!
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.2),
                     fontWeight: FontWeight.w100,
                     fontSize: 23,
                     fontFamily: YPUtils.fontInterBold),
@@ -101,8 +104,9 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
               Text(
                 "${widget.cardData.amount ?? "0"}",
                 style: TextStyle(
-                    color:
-                        enable ? Colors.white : Colors.white.withOpacity(0.2),
+                    color: widget.enable!
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.2),
                     fontSize: 23,
                     fontFamily: YPUtils.fontInterLight),
               )
@@ -112,7 +116,9 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
           Text(
             "Número do Cartão",
             style: TextStyle(
-                color: enable ? Colors.white : Colors.white.withOpacity(0.2),
+                color: widget.enable!
+                    ? Colors.white
+                    : Colors.white.withOpacity(0.2),
                 fontWeight: FontWeight.w600,
                 fontSize: 12),
           ),
@@ -125,14 +131,15 @@ class _CreditCardComponentState extends State<CreditCardComponent> {
               Text(
                 "${widget.cardData.cardNumber ?? "00"}",
                 style: TextStyle(
-                    color:
-                        enable ? Colors.white : Colors.white.withOpacity(0.2),
+                    color: widget.enable!
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.2),
                     fontFamily: YPUtils.fontInter,
                     fontWeight: FontWeight.w600,
                     fontSize: 10),
               ),
               Opacity(
-                opacity: enable ? 1 : 0.2,
+                opacity: widget.enable! ? 1 : 0.2,
                 child: Image.asset(
                   YPUtils.visaIcon,
                   height: 12,

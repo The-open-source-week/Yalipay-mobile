@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yalipay/src/controllers/cards_controller.dart';
 import 'package:yalipay/src/controllers/home_controller.dart';
 import 'package:yalipay/src/models/card_model.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
@@ -22,6 +23,7 @@ class _HistoricViewState extends State<HistoricView> {
 
   @override
   void initState() {
+    context.read<CardsController>().getCards(context);
     scrollController.addListener(() {
       setState(() => showShadowAppBar = scrollController.offset > 4);
     });
@@ -32,6 +34,11 @@ class _HistoricViewState extends State<HistoricView> {
   @override
   Widget build(BuildContext context) {
     var homeController = context.read<HomeController>();
+    var card = context
+        .watch<CardsController>()
+        .cardsList
+        .where((element) => element.isMain == true);
+
     return Scaffold(
       body: Column(
         children: [
@@ -46,10 +53,15 @@ class _HistoricViewState extends State<HistoricView> {
               controller: scrollController,
               padding: const EdgeInsets.symmetric(horizontal: 23),
               children: [
-                CreditCardComponent(
-                  cardData: CardModel(cardNumber: "24353453", amount: 454343),
-                  color: Color(0xff4F339A),
-                ),
+                if (card.isNotEmpty)
+                  CreditCardComponent(
+                    cardData: CardModel(
+                      cardNumber: card.first.cardNumber,
+                      amount: card.first.amount,
+                      cvv: card.first.cvv,
+                    ),
+                    color: Color(0xff4F339A),
+                  ),
                 const SizedBox(
                   height: 41,
                 ),

@@ -4,7 +4,7 @@ extension YPContext on BuildContext {
   void showYPSnackbar(String texto, SnackBarType tipo) =>
       ScaffoldMessenger.of(this).showSnackBar(
         SnackBar(
-          duration: const Duration(milliseconds: 800),
+          duration: const Duration(milliseconds: 2000),
           backgroundColor: tipo == SnackBarType.info
               ? Colors.yellow
               : tipo == SnackBarType.error

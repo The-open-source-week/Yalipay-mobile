@@ -29,7 +29,7 @@ class RegisterController extends ChangeNotifier {
       // ignore: use_build_context_synchronously
       if (user != null) {
         YPStorage.storeUserData(user);
-        GoTo.page(context, page: const LoginView());
+        GoTo.page(context, page: LoginView());
       }
     } on DioError catch (e) {
       logger.i(e.error);

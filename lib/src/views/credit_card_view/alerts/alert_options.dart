@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yalipay/src/controllers/cards_controller.dart';
+import 'package:yalipay/src/models/card_model.dart';
 import 'package:yalipay/src/utils/consts_utils.dart';
 
 class AlertOptions extends StatefulWidget {
-  const AlertOptions({super.key});
+  const AlertOptions({super.key, this.cardData});
+  final CardModel? cardData;
 
   @override
   State<AlertOptions> createState() => _AlertOptionsState();
 }
 
 class _AlertOptionsState extends State<AlertOptions> {
-  bool checkMain = false;
-  bool checkCard = false;
-
+  bool? isMainState, isActiveState = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,11 +52,25 @@ class _AlertOptionsState extends State<AlertOptions> {
               Checkbox(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)),
-                  value: checkMain,
+                  value: widget.cardData?.isMain ?? false,
                   activeColor: YPUtils.colorYellow,
                   checkColor: const Color(0xff161616),
-                  onChanged: (value) =>
-                      setState(() => checkMain = value ?? false))
+                  onChanged: (value) {
+                    switch (value) {
+                      case true:
+                        setState(() {
+                          isMainState = value;
+                          widget.cardData!.isMain = value;
+                        });
+                        break;
+                      case false:
+                        setState(() {
+                          isMainState = value;
+                          widget.cardData!.isMain = value;
+                        });
+                        break;
+                    }
+                  }),
             ],
           ),
           const SizedBox(
@@ -73,13 +89,26 @@ class _AlertOptionsState extends State<AlertOptions> {
               Checkbox(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50)),
-                value: checkCard,
+                value: widget.cardData?.isActive ?? false,
                 activeColor: YPUtils.colorYellow,
                 checkColor: const Color(0xff161616),
-                onChanged: (value) => setState(
-                  () => checkCard = value ?? false,
-                ),
-              )
+                onChanged: (value) {
+                  switch (value) {
+                    case true:
+                      setState(() {
+                        isActiveState = value;
+                        widget.cardData!.isActive = value;
+                      });
+                      break;
+                    case false:
+                      setState(() {
+                        isActiveState = value;
+                        widget.cardData!.isActive = value;
+                      });
+                      break;
+                  }
+                },
+              ),
             ],
           ),
           const SizedBox(
@@ -90,7 +119,18 @@ class _AlertOptionsState extends State<AlertOptions> {
                 backgroundColor: Color(0xff4F339A),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6))),
-            onPressed: () {},
+            onPressed: () {
+              isActiveState!
+                  ? context
+                      .read<CardsController>()
+                      .activateCard(context, widget.cardData!)
+                  : context
+                      .read<CardsController>()
+                      .deactivateCard(context, widget.cardData!);
+              context
+                  .read<CardsController>()
+                  .activateMainCard(context, widget.cardData!, isActiveState!);
+            },
             child: const Text(
               "Salvar",
               style: TextStyle(
@@ -106,7 +146,11 @@ class _AlertOptionsState extends State<AlertOptions> {
                 borderRadius: BorderRadius.circular(6),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              context
+                  .read<CardsController>()
+                  .deleteCard(context, widget.cardData!);
+            },
             child: const Text(
               "Remover Cartão",
               style: TextStyle(

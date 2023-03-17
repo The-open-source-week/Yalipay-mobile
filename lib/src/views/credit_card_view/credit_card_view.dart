@@ -100,17 +100,22 @@ class _CreditCardViewState extends State<CreditCardView> {
                             itemCount: provider.cardsList.length,
                             itemBuilder: (context, index) =>
                                 CreditCardComponent(
+                              enable: provider.cardsList[index].isActive!,
                               cardData: CardModel(
                                   cardNumber:
                                       provider.cardsList[index].cardNumber,
                                   amount: provider.cardsList[index].amount),
                               showOptions: true,
                               margin: const EdgeInsets.only(bottom: 15),
-                              color: Color(0xff4F339A),
+                              color: provider.cardsList[index].isActive!
+                                  ? Color(0xff4F339A)
+                                  : Color(0xff4F339A).withOpacity(0.1),
                               onTapOptionBtn: () => showDialog(
                                   context: context,
-                                  builder: (ctx) => const Dialog(
-                                        child: AlertOptions(),
+                                  builder: (ctx) => Dialog(
+                                        child: AlertOptions(
+                                          cardData: provider.cardsList[index],
+                                        ),
                                       )),
                             ),
                           ),
